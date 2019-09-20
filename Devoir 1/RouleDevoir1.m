@@ -53,9 +53,9 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
                                 
   I_demi_sphere = masse_demi_sphere * 0.3^2 * moment_inertie_demi_sphere;
   
-  I_bras = [(masse_bras/4)*(0.025^2) + (masse_bras/12)*(0.5^2), 0, 0 ;
-            0, (masse_bras/4)*(0.025^2) + (masse_bras/12)*(0.5^2), 0 ;
-            0, 0, (masse_bras/2)*(0.025^2) ] ;
+  I_bras = [(masse_bras/2)*(0.025^2) + (masse_bras/12)*(0.5^2), 0, 0 ;
+            0, (masse_bras/2)*(0.025^2) + (masse_bras/12)*(0.5^2), 0 ;
+            0, 0, masse_bras*(0.025^2) ] ;
   
   I_bras_1 = I_bras + masse_bras * Matrice_Inertie(pcm_colis_drone - pcm_bras_1);
   I_bras_2 = I_bras + masse_bras * Matrice_Inertie(pcm_colis_drone - pcm_bras_2);
