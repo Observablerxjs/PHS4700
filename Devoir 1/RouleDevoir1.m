@@ -84,7 +84,30 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
   Ry = [cos(mu),0,sin(mu);
         0,1,0;
         -sin(mu),0,cos(mu) ] ;
+
   MI_res = Ry * I * (Ry');
+  
+  # on commence par calculer le moment cinetique
+  L = MI_res * va;
+  
+  # ensuite on cherche le moment de force
+  # formule : t = (rj - ri) X F
+  
+  force_totale = sum(fi);
+  
+  moteur_positions = [ [0.3+0.50+.05, 0, 0.1/2], [0, 0.3+0.50+.05, 0.1/2],...
+  [-(0.3+0.50+.05) ,0, 0.1/2],[0, -(0.3+0.50+.05), 0.1/2] ];
+  
+  rj = [0;0;0];
+  
+  for k= 1: size(fi)(1)
+    rj += (moteur_positions(k)*fi(k))/force_totale;
+  endfor
+ 
+  t = cross((rj-pcm_res),[force_totale*cos(mu);0;force_totale*sin(mu)]);
+ 
+  #acceleration angulaire
+  aa_res = inv(MI_res)* (t+cross(L, va));
   
 endfunction
 
