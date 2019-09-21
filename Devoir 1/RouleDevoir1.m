@@ -46,7 +46,9 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
   endfor
   
   pcm_res = pcm_colis_drone + pos;
-
+  
+  #Moment d'inertie
+  
   moment_inertie_demi_sphere = [ 83/320, 0, 0 ;
                                 0, 83/320, 0 ;
                                 0, 0, 2/5 ] ;
@@ -64,7 +66,7 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
   
   I_moteur = [(masse_moteur/4)*(0.05^2) + (masse_moteur/12)*(0.1^2), 0, 0;
         0, (masse_moteur/4)*(0.05^2) + (masse_moteur/12)*(0.1^2), 0;
-        0, 0, (masse_moteur/2)*(0.05^2)];
+        0, 0, (masse_moteur/2)*(0.05^2)]; 
         
   I_moteur_1 = I_moteur + masse_moteur * Matrice_Inertie(pcm_colis_drone - pcm_moteur_1);
   I_moteur_2 = I_moteur + masse_moteur * Matrice_Inertie(pcm_colis_drone - pcm_moteur_2);
@@ -93,21 +95,23 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
   # ensuite on cherche le moment de force
   # formule : t = (rj - ri) X F
   
-  force_totale = sum(fi);
+  force_totale = sum(fi*25);
   
-  moteur_positions = [ [0.3+0.50+.05, 0, 0.1/2], [0, 0.3+0.50+.05, 0.1/2],...
-  [-(0.3+0.50+.05) ,0, 0.1/2],[0, -(0.3+0.50+.05), 0.1/2] ];
+  moteur_positions = [ [0.3+0.50+0.05, 0, 0.1/2]; [0, 0.3+0.50+0.05, 0.1/2];...
+  [-(0.3+0.50+0.05) ,0, 0.1/2];[0, -(0.3+0.50+0.05), 0.1/2] ];
   
   rj = [0;0;0];
   
+  rz = [0;0;0];
+  
   for k= 1: size(fi)(1)
-    rj += (moteur_positions(k)*fi(k))/force_totale;
+    rj += ( moteur_positions(k)*(fi(k)*25))/force_totale;
   endfor
- 
-  t = cross((rj-pcm_res),[force_totale*cos(mu);0;force_totale*sin(mu)]);
+  
+  t = cross((rj-pos),[force_totale*sin(mu);0;force_totale*cos(mu)]);
  
   #acceleration angulaire
-  aa_res = inv(MI_res)* (t+cross(L, va));
+  aa_res = inv(MI_res)*(t-cross(L, va));
   
 endfunction
 
