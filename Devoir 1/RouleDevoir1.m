@@ -83,7 +83,7 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
   Ry = [cos(mu),0,sin(mu);
         0,1,0;
         -sin(mu),0,cos(mu) ] ;
-
+        
   MI_res = Ry * I * (Ry');
   
   # on commence par calculer le moment cinetique
@@ -99,8 +99,8 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
   
   rj = [0;0;0];
   
-  for k= 0:size(fi)(1)-1
-    rj = rj(:,1) + ( (moteur_positions(1+k*3:3+k*3)')*(fi(k+1)*25))/force_totale;
+  for k= 0:size(fi)(1)-1 
+    rj = rj(:,1) + ( (moteur_positions(1+k*3:3+k*3)' + pos)*(fi(k+1)*25))/force_totale;
   endfor
   
   t = cross((rj-pcm_res),[force_totale*sin(mu);0;force_totale*cos(mu)]);
