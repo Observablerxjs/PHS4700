@@ -39,10 +39,7 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
   aa_res = [0;0;0];
   
   for i = 1:size(pcms)(2)
-    for j = 1:size(pcms)(1)
-      # replace bizzare truc by (i,j)
-      pcm_colis_drone += (pcms(size(pcms)(1)*(i-1)+j)*masses(i))/masse_totale;
-    endfor
+      pcm_colis_drone += (pcms(:,i)*masses(i))/masse_totale;
   endfor
   
   pcm_res = pcm_colis_drone + pos;
@@ -97,18 +94,16 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
   
   force_totale = sum(fi*25);
   
-  moteur_positions = [ [0.3+0.50+0.05, 0, 0.1/2]; [0, 0.3+0.50+0.05, 0.1/2];...
-  [-(0.3+0.50+0.05) ,0, 0.1/2];[0, -(0.3+0.50+0.05), 0.1/2] ];
+  moteur_positions = [ [0.3+0.50+0.05; 0; 0.1/2], [0; 0.3+0.50+0.05; 0.1/2],...
+  [-(0.3+0.50+0.05) ;0; 0.1/2],[0; -(0.3+0.50+0.05); 0.1/2] ];
   
   rj = [0;0;0];
   
-  rz = [0;0;0];
-  
-  for k= 1: size(fi)(1)
-    rj += ( moteur_positions(k)*(fi(k)*25))/force_totale;
+  for k= 0:size(fi)(1)-1
+    rj = rj(:,1) + ( (moteur_positions(1+k*3:3+k*3)')*(fi(k+1)*25))/force_totale;
   endfor
   
-  t = cross((rj-pos),[force_totale*sin(mu);0;force_totale*cos(mu)]);
+  t = cross((rj-pcm_res),[force_totale*sin(mu);0;force_totale*cos(mu)]);
  
   #acceleration angulaire
   aa_res = inv(MI_res)*(t-cross(L, va));
