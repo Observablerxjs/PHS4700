@@ -34,7 +34,9 @@ for vit=1:3
     %% IMPORTANT !!!!!: NE PAS OUBLIE DE RECHANGER CETTE LIGNE %%
     %%[coupref vfref tref rbtref ]=Devoir2ref(option,xy0,vb0,wb0);%%
     [coupref vfref tref rbtref ]=Devoir2(option,xy0,vb0,wb0);
+    %fprintf('**************************************************** \n')
     [coup vf t rbt ]=Devoir2(option,xy0,vb0,wb0);
+    %fprintf('**************************************************** \n')
     lastt=length(t);
     fprintf('\nCoup %3d Delta Ref %3d \n',coup,coup-coupref);
     fprintf('\nLa simualtion se termine au temps %12.8f s Delta Ref %12.8f s \n',t(lastt),t(lastt)-tref(lastt));
