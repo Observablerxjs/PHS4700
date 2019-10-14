@@ -15,6 +15,7 @@ for vit=1:3
 %
 %  Tracer terrain et position de la balle de golf 
 %
+
   fprintf('\nSimulation %3d\n',vit);
   for option=1:3
     if option == 1
@@ -30,7 +31,9 @@ for vit=1:3
     fprintf('Position initiale de la balle [%12.8f %12.8f]  m \n',xy0(1),xy0(2));
     fprintf('Vitesse initiale de la balle  [%12.8f %12.8f %12.8f]  m/s \n',vb0(1),vb0(2),vb0(3));
     fprintf('Vitesse angulaire de la balle [%12.8f %12.8f %12.8f] rad/s \n',wb0(1),wb0(2),wb0(3));
-    [coupref vfref tref rbtref ]=Devoir2ref(option,xy0,vb0,wb0);
+    %% IMPORTANT !!!!!: NE PAS OUBLIE DE RECHANGER CETTE LIGNE %%
+    %%[coupref vfref tref rbtref ]=Devoir2ref(option,xy0,vb0,wb0);%%
+    [coupref vfref tref rbtref ]=Devoir2(option,xy0,vb0,wb0);
     [coup vf t rbt ]=Devoir2(option,xy0,vb0,wb0);
     lastt=length(t);
     fprintf('\nCoup %3d Delta Ref %3d \n',coup,coup-coupref);
