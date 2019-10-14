@@ -42,6 +42,11 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
       pcm_colis_drone += (pcms(:,i)*masses(i))/masse_totale;
   endfor
   
+    # matrice de rotation
+  Ry = [cos(mu),0,sin(mu);
+        0,1,0;
+        -sin(mu),0,cos(mu) ] ;
+  
   pcm_res = pcm_colis_drone + pos;
   
   #Moment d'inertie
@@ -78,11 +83,6 @@ function  [pcm_res MI_res aa_res] = Devoir1(pos, mu, va, fi)
     
   I = I_demi_sphere + I_bras_1+ I_bras_2 + I_bras_3 + I_bras_4 + I_moteur_1 + ...
       I_moteur_2 + I_moteur_3 + I_moteur_4 + I_colis; 
-  
-  # matrice de rotation
-  Ry = [cos(mu),0,sin(mu);
-        0,1,0;
-        -sin(mu),0,cos(mu) ] ;
         
   MI_res = Ry * I * (Ry');
   
