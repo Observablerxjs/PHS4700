@@ -55,21 +55,15 @@ for vit=1:3
     fprintf('Position finale de la balle    [%12.8f %12.8f %12.8f]  m \n',rbt(lastt,1),rbt(lastt,2),rbt(lastt,3));
     fprintf('\n\n');
 
-## section pour dessiner graphique
-##    rbt_t {option} = rbt
-    
 ## section pour ecrire resultats dans fichier txt
-##    fdisp(file_id, strcat('Option ',num2str(option)));
-##    fdisp(file_id, t(lastt));
-##    fdisp(file_id, [vf(1),vf(2),vf(3)]);
-##    fdisp(file_id, [rbt(lastt,1),rbt(lastt,2),rbt(lastt,3)]);
-##    fdisp(file_id, coup);
+    fdisp(file_id, strcat('Option ',num2str(option)));
+    fdisp(file_id, t(lastt));
+    fdisp(file_id, [vf(1),vf(2),vf(3)]);
+    fdisp(file_id, [rbt(lastt,1),rbt(lastt,2),rbt(lastt,3)]);
+    fdisp(file_id, coup);
     
   end
 ## section pour ecrire resultats dans fichier txt
-##    fclose(file_id);
-    
-## section pour dessiner graphique
-##    PlotGraph(rbt_t{1},rbt_t{2},rbt_t{3},strcat('Simulation ',num2str(vit)));
+    fclose(file_id);
  
 end
