@@ -1,0 +1,1 @@
+[V, F] = createCube;line = [.2 .3 .4 1 0 0];pts = intersectLineMesh3d(line, V, F);
