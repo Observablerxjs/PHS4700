@@ -1,1 +1,1 @@
-[V, F] = createCube;line = [.2 .3 .4 1 0 0];pts = intersectLineMesh3d(line, V, F);
+mBalle = 0.07;rBalle = 0.02;IBalle = [          (2*mBalle*rBalle^2)/5,0,0;          0,(2*mBalle*rBalle^2)/5,0;          0,0,(2*mBalle*rBalle^2)/5          ];          rBallep=[1,1,1];normale = [1,0,0];  invIballe = inv(IBalle);  first_term_balle = invIballe*cross(rBallep',normale');  GBalle = dot(normale,(cross(first_term_balle,rBallep')));  disp(GBalle);#disp(dot([1,0,0],(cross((1/IBalle)'*cross([1,1,1],[1,0,0]),[1,1,1]))));

@@ -1,7 +1,9 @@
-function [Touche] = VerifierConditions(pos_sommets,posBloc,posBalle)
+function [Touche normale intersect_point] = VerifierConditions(pos_sommets,posBloc,posBalle)
   # Verifier si aucun des points n'a touche le sol pour Balle et Bloc
   
   rBalle = 0.02;
+  normale = [0,0,0];
+  intersect_point = [0,0,0];
   
   if (posBalle(3)-rBalle) <= 0
     Touche = 1;
@@ -43,6 +45,8 @@ function [Touche] = VerifierConditions(pos_sommets,posBloc,posBalle)
       
       if d <= rBalle
          Touche = 0;
+         normale = planeNormal(plane);
+         intersect_point = intersection_point;
          return;
        end
     end
