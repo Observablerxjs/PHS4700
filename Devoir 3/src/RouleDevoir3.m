@@ -10,7 +10,7 @@ bloci=zeros(3,3);
 ballei=zeros(2,3);
 bloci(1,:)=[4 4 1];
 ballei(1,:)=[1 1 2];
-for Simulation=1:1
+for Simulation=1:6
 %
 %  Cas
 %
@@ -46,7 +46,7 @@ for Simulation=1:1
     ballei(2,:)=[ 5 2 0.1];
   end
   fprintf('\nSimulation %1d\n',Simulation);
-  [Touche tf blocf ballef ]=Devoir3(bloci,ballei,tl,Simulation);
+  [Touche tf blocf ballef ]=Devoir3(bloci,ballei,tl);
   if Touche == 0 
     fprintf('Une collision s''est produite\n');
   else 
