@@ -30,15 +30,15 @@ for itst=1:1
   scatter3(pointBas(1),pointBas(2),pointBas(3));
   hold on;
   vec1 = pointHaut - dep(itst,:); 
-##  quiver3(dep(itst,1),dep(itst,2),dep(itst,3),vec1(1),vec1(2),vec1(3));
-##  hold on;
-##  vec2 = pointBas - dep(itst,:);
-##  quiver3(dep(itst,1),dep(itst,2),dep(itst,3),vec2(1),vec2(2),vec2(3));
-##  hold on;
+  quiver3(dep(itst,1),dep(itst,2),dep(itst,3),vec1(1),vec1(2),vec1(3));
+  hold on;
+  vec2 = pointBas - dep(itst,:);
+  quiver3(dep(itst,1),dep(itst,2),dep(itst,3),vec2(1),vec2(2),vec2(3));
+  hold on;
   quiver3(0,0,0,pointHaut(1),pointHaut(2),pointHaut(3));
   hold on;
-##  quiver3(0,0,0,pointBas(1),pointBas(2),pointBas(3));
-##  hold on;
+  quiver3(0,0,0,pointBas(1),pointBas(2),pointBas(3));
+  hold on;
   
   polMin = acos(dot(pointHaut, axeZ) / (norm(pointHaut) * norm(axeZ)));
   polMax = acos(dot(axeZ, pointBas) / (norm(axeZ) * norm(pointBas)));
@@ -52,10 +52,10 @@ for itst=1:1
   scatter3(0,0,17);
   hold on;
   
-##  [x, y, z] = ellipsoid(cm(1),cm(2),cm(3),rad,rad,bval,30);
-##  hold on;
-##  surf(x, y, z,'edgecolor','b','EdgeAlpha',0.5)
-##  hold on;
+  [x, y, z] = ellipsoid(cm(1),cm(2),cm(3),rad,rad,bval,30);
+  hold on;
+  surf(x, y, z,'edgecolor','b','EdgeAlpha',0.5)
+  hold on;
   
 ##  Face1x=[Lame(1,1) Lame(1,1) Lame(1,1) Lame(1,1) Lame(1,1)];
 ##  Face2x=[Lame(1,2) Lame(1,2) Lame(1,2) Lame(1,2) Lame(1,2)];
