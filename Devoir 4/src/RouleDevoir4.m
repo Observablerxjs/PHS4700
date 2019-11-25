@@ -15,7 +15,7 @@ nout = [1 1   1   1.2];
 nin  = [1  1.5 1.5 1];
 dep  = [0 0 5; 0 0 5; 0 0 0; 0 0 5];
 
-for itst=4:4
+for itst=1:1
   tic
   clf;
   hold;
